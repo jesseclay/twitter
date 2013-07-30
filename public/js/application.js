@@ -1,7 +1,18 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
-
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+ 
+  window.onload = function() {
+    var refreshDiv = $('.wait');
+    if (refreshDiv) {
+      refreshDiv.html("<img src='../images/pac.gif' alt='loading...' />")
+      refreshDiv.append("<h2>Please wait while we fetch the content!</p>")
+      $.ajax({
+        url: window.location.pathname,
+        method: 'get'
+      }).done(function(msg){
+        $('.container').html(msg);
+        refreshDiv.remove();
+        console.log(msg);
+      });
+    }
+  }
 });

@@ -1,0 +1,15 @@
+
+  <% if @tweets && @user.tweets_stale? %>
+  <div class="wait"></div>
+  <div class="refresh">
+  </div>
+  <%else%>
+    <%if @tweets %>
+      <ol>
+        <h1>Showing tweets from <%= @twatter %></h1>
+        <% @tweets.each do |tweet|%>
+          <li><%= tweet.content %></li>
+        <%end%>
+      </ol>
+    <%end%>
+  <%end%>
